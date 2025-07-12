@@ -7,6 +7,17 @@
   margin: 0;
   padding: 0;
 }
+
+.ganttTaskRootSticky {
+  display:flex;
+  flex-direction: column;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 /* Only chrome otherwise the firefox scrollbar has no edge*/
 @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
   .ganttTaskRoot {
@@ -44,6 +55,7 @@
   overflow-x: hidden;
   overflow-y: auto;
 }
+
 /* Only chrome otherwise the firefox scrollbar has no edges*/
 @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
   .ganttTaskContent {
@@ -60,4 +72,16 @@
   list-style: none;
   outline: none;
   position: relative;
+}
+
+.wrapperSticky {
+  display:grid;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  outline: none;
+  position: relative;
+  height: 100%;
 }

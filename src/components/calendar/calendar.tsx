@@ -30,6 +30,7 @@ export type CalendarProps = {
   rtl: boolean;
   startColumnIndex: number;
   colors: Partial<ColorStyles>;
+  stickyHeaders?: boolean;
 };
 
 export const Calendar: React.FC<CalendarProps> = ({
@@ -48,7 +49,8 @@ export const Calendar: React.FC<CalendarProps> = ({
   renderTopHeader = defaultRenderTopHeader,
   rtl,
   startColumnIndex,
-  colors
+  colors,
+  stickyHeaders = false
 }) => {
   const renderBottomHeaderByDate = useCallback(
     (date: Date, index: number) =>
@@ -467,7 +469,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   }
 
   return (
-    <div className={styles.calendarMain} style={{ width: fullSvgWidth }}>
+    <div className={stickyHeaders ? styles.calendarMainSticky : styles.calendarMain} style={{ width: fullSvgWidth }}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width={fullSvgWidth}

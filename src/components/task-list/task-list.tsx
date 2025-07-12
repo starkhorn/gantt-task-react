@@ -68,6 +68,7 @@ export type TaskListProps = {
   onScrollTableListContentVertically: (
     event: SyntheticEvent<HTMLDivElement>
   ) => void;
+  stickyHeaders?: boolean;
 } & TaskListHeaderActionsProps;
 
 const TaskListInner: React.FC<TaskListProps & TaskListHeaderActionsProps> = (
@@ -110,7 +111,8 @@ const TaskListInner: React.FC<TaskListProps & TaskListHeaderActionsProps> = (
     onScrollTableListContentVertically,
     onCollapseAll,
     onExpandFirstLevel,
-    onExpandAll
+    onExpandAll,
+    stickyHeaders = false
   }) => {
   // Manage the column and list table resizing
   const [
@@ -131,23 +133,40 @@ const TaskListInner: React.FC<TaskListProps & TaskListHeaderActionsProps> = (
   return (
     <div className={styles.ganttTableRoot} ref={taskListRef}>
       <div
-        className={styles.ganttTableWrapper}
+        className={stickyHeaders ? styles.ganttTableWrapperSticky : styles.ganttTableWrapper}
         style={{
           width: tableWidth
         }}
       >
-        <TaskListHeader
-          headerHeight={distances.headerHeight}
-          fontFamily={fontFamily}
-          fontSize={fontSize}
-          columns={columns}
-          onColumnResizeStart={onColumnResizeStart}
-          canResizeColumns={canResizeColumns}
-          onCollapseAll={onCollapseAll}
-          onExpandFirstLevel={onExpandFirstLevel}
-          onExpandAll={onExpandAll}
-          colors={colors}
-        />
+        {stickyHeaders ? (
+          <div className={styles.taskListHeaderSticky}>
+            <TaskListHeader
+              headerHeight={distances.headerHeight}
+              fontFamily={fontFamily}
+              fontSize={fontSize}
+              columns={columns}
+              onColumnResizeStart={onColumnResizeStart}
+              canResizeColumns={canResizeColumns}
+              onCollapseAll={onCollapseAll}
+              onExpandFirstLevel={onExpandFirstLevel}
+              onExpandAll={onExpandAll}
+              colors={colors}
+            />
+          </div>
+        ) : (
+          <TaskListHeader
+            headerHeight={distances.headerHeight}
+            fontFamily={fontFamily}
+            fontSize={fontSize}
+            columns={columns}
+            onColumnResizeStart={onColumnResizeStart}
+            canResizeColumns={canResizeColumns}
+            onCollapseAll={onCollapseAll}
+            onExpandFirstLevel={onExpandFirstLevel}
+            onExpandAll={onExpandAll}
+            colors={colors}
+          />
+        )}
 
         <div
           className={styles.taskListContent}

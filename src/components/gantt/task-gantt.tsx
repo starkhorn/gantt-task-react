@@ -31,7 +31,8 @@ export type TaskGanttProps = {
   onScrollGanttContentVertically: (
     event: SyntheticEvent<HTMLDivElement>
   ) => void;
-  colors: Partial<ColorStyles>
+  colors: Partial<ColorStyles>;
+  stickyHeaders?: boolean;
 };
 
 const TaskGanttInner: React.FC<TaskGanttProps> = (props) => {
@@ -49,7 +50,8 @@ const TaskGanttInner: React.FC<TaskGanttProps> = (props) => {
     onVerticalScrollbarScrollX,
     ganttTaskRootRef,
     onScrollGanttContentVertically: onScrollVertically,
-    colors
+    colors,
+    stickyHeaders = false
   } = props;
   const containerStyle: CSSProperties = {
     // In order to see the vertical scrollbar of the gantt content,
@@ -182,12 +184,12 @@ const TaskGanttInner: React.FC<TaskGanttProps> = (props) => {
   };
   return (
     <div
-      className={styles.ganttTaskRoot}
+      className={stickyHeaders ? styles.ganttTaskRootSticky : styles.ganttTaskRoot}
       ref={ganttTaskRootRef}
       onScroll={onVerticalScrollbarScrollX}
       dir="ltr"
     >
-      <Calendar {...calendarProps} colors={colors} />
+      <Calendar {...calendarProps} colors={colors} stickyHeaders={stickyHeaders} />
 
       <div
         ref={ganttTaskContentRef}

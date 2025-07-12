@@ -74,3 +74,44 @@
 .hidden {
   display: none;
 }
+
+.ganttTableWrapperSticky {
+  display: grid;
+  overflow: hidden;
+  grid-template-rows: auto 1fr;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  height: 100%;
+}
+
+.ganttTableWrapperSticky::-webkit-scrollbar {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.ganttTableWrapperSticky::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.ganttTableWrapperSticky::-webkit-scrollbar-thumb {
+  border: 6px solid transparent;
+  background: rgba(0, 0, 0, 0.2);
+  background: var(--palette-black-alpha-20, rgba(0, 0, 0, 0.2));
+  border-radius: 10px;
+  background-clip: padding-box;
+}
+
+.ganttTableWrapperSticky::-webkit-scrollbar-thumb:hover {
+  border: 4px solid transparent;
+  background: rgba(0, 0, 0, 0.3);
+  background: var(--palette-black-alpha-30, rgba(0, 0, 0, 0.3));
+  background-clip: padding-box;
+}
+
+.taskListHeaderSticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+  border-bottom: 1px solid #e6e4e4;
+}

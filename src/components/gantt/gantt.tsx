@@ -200,6 +200,7 @@ export const Gantt: React.FC<GanttProps> = ({
                                               isShowTaskNumbers = true,
                                               isUnknownDates = false,
                                               isAdjustToWorkingDates = true,
+                                              stickyHeaders = false,
                                               onAddTask = undefined,
                                               onAddTaskClick = undefined,
                                               onArrowDoubleClick: onArrowDoubleClickProp = undefined,
@@ -1926,7 +1927,7 @@ export const Gantt: React.FC<GanttProps> = ({
   const displayTable = !columnsProp || columnsProp.length > 0;
   return (
     <div
-      className={styles.wrapper}
+      className={stickyHeaders ? styles.wrapperSticky : styles.wrapper}
       onKeyDown={handleKeyDown}
       tabIndex={0}
       ref={wrapperRef}
@@ -1938,7 +1939,7 @@ export const Gantt: React.FC<GanttProps> = ({
       }}
     >
       {/* {columns.length > 0 && <TaskList {...tableProps} />} */}
-      {displayTable && <TaskList {...tableProps} />}
+      {displayTable && <TaskList {...tableProps} stickyHeaders={stickyHeaders} />}
 
       <TaskGantt
         barProps={barProps}
@@ -1954,6 +1955,7 @@ export const Gantt: React.FC<GanttProps> = ({
         ganttTaskRootRef={ganttTaskRootRef}
         onScrollGanttContentVertically={onScrollVertically}
         colors={colors}
+        stickyHeaders={stickyHeaders}
       />
 
       {tooltipTaskFromMap && (
