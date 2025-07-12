@@ -490,6 +490,10 @@ export interface DisplayOption {
    */
   isShowCriticalPath?: boolean;
   /**
+   * Enable sticky headers that remain visible when scrolling vertically
+   */
+  stickyHeaders?: boolean;
+  /**
    * Show numbers of tasks next to tasks
    */
   isShowTaskNumbers?: boolean;

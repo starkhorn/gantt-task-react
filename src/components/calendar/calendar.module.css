@@ -35,3 +35,13 @@
   stroke: #e0e0e0;
   stroke-width: 1.4;
 }
+
+.calendarMainSticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+  border-top: #e6e4e4 3px solid;
+  border-bottom: #e6e4e4 3px solid;
+  box-sizing: content-box;
+}
